@@ -25,7 +25,7 @@ export default function Home() {
             {/* Button + Social */}
             <div className="flex flex-col xl:flex-row items-center gap-8">
               <a
-                href="/assets/resume.pdf"
+                href="/assets/Heidi_Pan_Resume.pdf"
                 download
                 className="uppercase border border-emerald-400 text-emerald-400 px-6 py-4 rounded-md flex items-center gap-2 hover:bg-emerald-400 hover:text-black transition-all duration-300"
               >
