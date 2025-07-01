@@ -3,7 +3,7 @@
 import { FiDownload } from "react-icons/fi";
 import Photo from "@/components/Photo";
 import Social from "@/components/Social";
-// import Stats from "@/components/Stats";
+import Stats from "@/components/Stats";
 
 export default function Home() {
   return (
@@ -50,7 +50,7 @@ export default function Home() {
       </div>
 
       {/* Stats */}
-      {/* <Stats /> */}
+      <Stats />
     </section>
   );
 }
