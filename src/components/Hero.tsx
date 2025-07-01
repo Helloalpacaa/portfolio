@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Photo from "./Photo";
 
 export default function Hero() {
   return (
@@ -15,15 +15,7 @@ export default function Hero() {
         that solve real-world problems.
       </p>
 
-      {/* Profile Image with Animated Circle */}
-      <div className="relative w-48 h-48 rounded-full overflow-hidden mt-8">
-        <Image
-          src="/assets/photo.png"
-          alt="Heidi Pan"
-          fill
-          className="object-cover"
-        />
-      </div>
+      <Photo />
     </section>
   );
 }
