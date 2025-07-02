@@ -22,20 +22,21 @@ export default function Home() {
             </p>
 
             {/* btn and socials */}
-            <div className="flex flex-col xl:flex-row items-center gap-8 text-[#00ff99]">
-              <button
-                className="uppercase flex items-center gap-2 border border-accent 
-  rounded-full px-6 py-3 text-accent hover:bg-accent hover:text-primary transition-all 
-  duration-500"
+            <div className="flex flex-col xl:flex-row items-center gap-8">
+              <a
+                href="/assets/Heidi_Pan_Resume.pdf"
+                download
+                className="uppercase flex items-center gap-2 border border-[#00ff99] rounded-full px-6 py-3 
+  text-[#00ff99] hover:bg-[#00ff99] hover:text-[#1c1c22] transition-all duration-500"
               >
                 <span>Download CV</span>
                 <FiDownload className="text-xl" />
-              </button>
+              </a>
               <div className="mb-8 xl:mb-0">
                 <Social
                   containerStyles="flex gap-6"
-                  iconStyles="w-9 h-9 border border-accent rounded-full flex justify-center 
-  items-center text-accent text-base hover:bg-accent hover:text-primary transition-all duration-500"
+                  iconStyles="w-9 h-9 border border-[#00ff99] rounded-full flex justify-center items-center 
+  text-[#00ff99] text-base hover:bg-[#00ff99] hover:text-[#1c1c22] transition-all duration-500"
                 />
               </div>
             </div>

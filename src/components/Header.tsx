@@ -1,8 +1,8 @@
-import Link from "next/link";
-import { Button } from "./ui/button";
-import { NavigationItem } from "@/types";
+"use client";
 
-// Navigation items data
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
 const navigationItems = [
   { name: "home", href: "/" },
   { name: "services", href: "/services" },
@@ -12,12 +12,14 @@ const navigationItems = [
 ];
 
 export default function Header() {
+  const pathname = usePathname(); // Gets current page path
+
   return (
     <header className="py-8 xl:py-12 text-white">
       <div className="container mx-auto flex justify-between items-center">
         {/* Logo */}
-        <Link href="/" className="text-white hover:text-white">
-          <h1 className="text-4xl font-semibold">
+        <Link href="/">
+          <h1 className="text-4xl font-semibold text-white">
             Heidi<span style={{ color: "#00ff99" }}>.</span>
           </h1>
         </Link>
@@ -25,29 +27,35 @@ export default function Header() {
         {/* Desktop Navigation */}
         <div className="hidden xl:flex items-center gap-8">
           <nav className="flex gap-8">
-            {navigationItems.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="capitalize font-medium hover:text-accent transition-all"
-              >
-                {item.name}
-              </Link>
-            ))}
+            {navigationItems.map((item) => {
+              const isActive = pathname === item.href;
+              return (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className={`capitalize font-medium transition-all ${
+                    isActive
+                      ? "text-[#00ff99] border-b-2 border-[#00ff99] pb-1"
+                      : "hover:text-[#00ff99]"
+                  }`}
+                >
+                  {item.name}
+                </Link>
+              );
+            })}
           </nav>
           <Link href="/contact">
             <button
-              className="bg-accent text-primary px-6 py-3 rounded-md hover:bg-accent/80 
-  transition-all"
+              className="bg-[#00ff99] text-[#1c1c22] px-6 py-3 rounded-full hover:bg-[#00e187]
+   transition-all"
             >
               Hire me
             </button>
           </Link>
         </div>
 
-        {/* Mobile menu placeholder */}
         <div className="xl:hidden">
-          <span className="text-accent">Menu</span>
+          <span className="text-[#00ff99]">Menu</span>
         </div>
       </div>
     </header>
