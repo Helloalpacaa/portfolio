@@ -40,7 +40,7 @@ export default function Stats() {
                 end={item.num}
                 duration={5}
                 delay={2}
-                className="text-4xl xl:text-6xl font-extrabold"
+                className="text-4xl xl:text-6xl font-extrabold text-accent"
               />
               <p
                 className={`${
