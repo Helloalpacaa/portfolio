@@ -9,7 +9,7 @@ type Stat = {
 
 const stats: Stat[] = [
   {
-    num: 5,
+    num: 1,
     text: "Years of experience",
   },
   {
