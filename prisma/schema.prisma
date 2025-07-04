@@ -14,9 +14,35 @@ datasource db {
 }
 
 model Project {
-  id          Int      @id @default(autoincrement())
+  id          String   @id @default(cuid())
+  num         String
+  category    String
   title       String
-  Description String
-  link        String
+  description String
+  image       String?
+  liveUrl     String?
+  githubUrl   String?
+  featured    Boolean  @default(false)
   createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Technology stack relationship
+  technologies ProjectTechnology[]
+}
+
+model Technology {
+  id   String @id @default(cuid())
+  name String @unique
+
+  projects ProjectTechnology[]
+}
+
+model ProjectTechnology {
+  projectId    String
+  technologyId String
+
+  project    Project    @relation(fields: [projectId], references: [id])
+  technology Technology @relation(fields: [technologyId], references: [id])
+
+  @@id([projectId, technologyId])
 }
