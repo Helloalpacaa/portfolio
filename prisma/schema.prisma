@@ -19,6 +19,7 @@ model Project {
   liveUrl      String?
   num          String
   updatedAt    DateTime            @updatedAt
+  stack        String[]
   technologies ProjectTechnology[]
 }
 
