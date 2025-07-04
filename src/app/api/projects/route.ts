@@ -9,13 +9,18 @@ const prisma = new PrismaClient();
 // GET HTTP method. Next.js automatically maps this to GET /api/projects.
 export async function GET() {
   try {
+    console.log("API route called"); // Debug log
+    console.log("Prisma client created"); // Debug log
     // Find all rows in the Project table, and sort them by createdAt — newest first
     const projects = await prisma.project.findMany({
       orderBy: { createdAt: "desc" },
     });
+
+    console.log("Projects fetched:", projects); // Debug log
     // Send the fetched data as a JSON response to the browser or frontend.
     return NextResponse.json(projects);
   } catch (error) {
+    console.error("API Error:", error); // This will show the exact error
     //  If something goes wrong (like DB connection issues), we catch it and send an error response with HTTP status 500 (Internal Server Error).
     return NextResponse.json(
       { error: "Failed to fetch projects" },
