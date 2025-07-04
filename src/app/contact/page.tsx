@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import type { JSX } from "react";
+import emailjs from "@emailjs/browser";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -59,6 +60,8 @@ const Contact: React.FC = () => {
     service: "",
     message: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -77,10 +80,51 @@ const Contact: React.FC = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    // Add your form submission logic here
+    
+    // Validate required fields
+    if (!formData.firstname || !formData.lastname || !formData.email || !formData.message) {
+      alert('Please fill in all required fields');
+      return;
+    }
+    
+    setIsSubmitting(true);
+
+    try {
+      const result = await emailjs.send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+        {
+          from_name: `${formData.firstname} ${formData.lastname}`,
+          from_email: formData.email,
+          phone: formData.phone,
+          service: formData.service,
+          message: formData.message,
+        },
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
+      );
+
+      console.log("Email sent successfully!", result.text);
+      setFormData({
+        firstname: "",
+        lastname: "",
+        email: "",
+        phone: "",
+        service: "",
+        message: "",
+      });
+      setShowSuccess(true);
+      setTimeout(() => setShowSuccess(false), 5000);
+    } catch (error) {
+      console.error("Email failed to send:", error);
+      console.error("Error details:", JSON.stringify(error, null, 2));
+      console.error("Service ID:", process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID);
+      console.error("Template ID:", process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID);
+      console.error("Public Key:", process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -92,6 +136,16 @@ const Contact: React.FC = () => {
       }}
       className="py-6"
     >
+      {showSuccess && (
+        <motion.div
+          initial={{ opacity: 0, y: -50 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -50 }}
+          className="fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50"
+        >
+          Message sent successfully! 🎉
+        </motion.div>
+      )}
       <div className="container mx-auto">
         <div className="flex flex-col xl:flex-row gap-[30px]">
           {/* form */}
@@ -112,6 +166,7 @@ const Contact: React.FC = () => {
                   value={formData.firstname}
                   onChange={handleInputChange}
                   placeholder="Firstname"
+                  required
                 />
                 <Input
                   type="text"
@@ -119,6 +174,7 @@ const Contact: React.FC = () => {
                   value={formData.lastname}
                   onChange={handleInputChange}
                   placeholder="Lastname"
+                  required
                 />
                 <Input
                   type="email"
@@ -126,6 +182,7 @@ const Contact: React.FC = () => {
                   value={formData.email}
                   onChange={handleInputChange}
                   placeholder="Email address"
+                  required
                 />
                 <Input
                   type="tel"
@@ -165,10 +222,11 @@ const Contact: React.FC = () => {
                 onChange={handleInputChange}
                 className="h-[200px]"
                 placeholder="Type your message here."
+                required
               />
               {/* btn */}
-              <Button size="default" className="max-w-40">
-                Send message
+              <Button size="default" variant="outline" className="max-w-40" disabled={isSubmitting}>
+                {isSubmitting ? "Sending..." : "Send message"}
               </Button>
             </form>
           </div>
