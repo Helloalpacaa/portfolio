@@ -88,19 +88,19 @@ export async function POST(request: NextRequest) {
     }
 
     return NextResponse.json({ reply });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("OpenAI API error:", error);
-    console.error("Error message:", error.message);
-    console.error("Error status:", error.status);
-    console.error("Error code:", error.code);
+    console.error("Error message:", (error as any).message);
+    console.error("Error status:", (error as any).status);
+    console.error("Error code:", (error as any).code);
     console.error("API Key exists:", !!process.env.OPENAI_API_KEY);
     console.error("API Key prefix:", process.env.OPENAI_API_KEY?.slice(0, 10));
 
     return NextResponse.json(
       {
         error: "Failed to get response from AI",
-        details: error.message || "Unknown error",
-        status: error.status || "No status",
+        details: (error as any).message || "Unknown error",
+        status: (error as any).status || "No status",
       },
       { status: 500 }
     );

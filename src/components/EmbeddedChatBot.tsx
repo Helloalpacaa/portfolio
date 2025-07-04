@@ -15,7 +15,7 @@ const EmbeddedChatBot = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: "1",
-      text: "Hi! I'm Heidi. Ask me anything about my background, skills, projects, or experience!",
+      text: "Hi! I&apos;m Heidi. Ask me anything about my background, skills, projects, or experience!",
       isUser: false,
       timestamp: new Date(),
     },
