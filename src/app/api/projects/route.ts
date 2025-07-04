@@ -5,7 +5,7 @@ const prisma = new PrismaClient();
 
 export async function GET() {
   try {
-    console.log("API route called");
+    console.log("API route called - connecting to database");
     console.log("Prisma client created");
     const projects = await prisma.project.findMany({
       orderBy: { num: "asc" },
