@@ -127,10 +127,10 @@ const EmbeddedChatBot = () => {
           <button
             onClick={() => sendMessage()}
             disabled={isLoading || !inputMessage.trim()}
-            className="bg-accent text-primary px-6 py-3 rounded-xl hover:bg-accent/80 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center gap-2"
+            className="bg-gradient-to-r from-accent to-green-400 text-primary px-6 py-3 rounded-xl hover:from-accent/90 hover:to-green-400/90 hover:shadow-lg hover:shadow-accent/30 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 transition-all duration-300 flex items-center gap-2 font-medium"
           >
-            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-              <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
+            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
             </svg>
           </button>
         </div>
@@ -165,10 +165,10 @@ const EmbeddedChatBot = () => {
             >
               <div className="flex items-start gap-3 max-w-[80%]">
                 <div
-                  className={`p-4 rounded-xl ${
+                  className={`p-4 rounded-xl shadow-lg ${
                     message.isUser
-                      ? "bg-accent text-primary"
-                      : "bg-[#2a2a2a] text-white"
+                      ? "bg-accent text-primary shadow-accent/20"
+                      : "bg-gradient-to-r from-[#2a2a2a] to-[#333333] text-white shadow-black/30 border border-white/10"
                   }`}
                 >
                   {!message.isUser && (
@@ -182,7 +182,7 @@ const EmbeddedChatBot = () => {
           {isLoading && (
             <div className="flex justify-start">
               <div className="flex items-start gap-3">
-                <div className="bg-[#2a2a2a] text-white p-4 rounded-xl">
+                <div className="bg-gradient-to-r from-[#2a2a2a] to-[#333333] text-white p-4 rounded-xl shadow-lg shadow-black/30 border border-white/10">
                   <p className="text-xs text-blue-400 mb-2 font-medium">🐱 HEIDI (BOT):</p>
                   <div className="flex space-x-2">
                     <div className="w-2 h-2 bg-white/60 rounded-full animate-bounce"></div>
