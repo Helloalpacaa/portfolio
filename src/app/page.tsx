@@ -4,12 +4,13 @@ import { FiDownload } from "react-icons/fi";
 import Photo from "@/components/Photo";
 import Social from "@/components/Social";
 import Stats from "@/components/Stats";
+import EmbeddedChatBot from "@/components/EmbeddedChatBot";
 
 export default function Home() {
   return (
     <section className="h-full">
       <div className="container mx-auto h-full">
-        <div className="flex flex-col xl:flex-row items-center justify-between xl:pt-8 xl:pb-24">
+        <div className="flex flex-col xl:flex-row items-center justify-between xl:pt-8 xl:pb-24 gap-8">
           {/* text section */}
           <div className="text-center xl:text-left order-2 xl:order-1 xl:max-w-[45%]">
             <span className="text-xl">Software Developer</span>
@@ -42,8 +43,13 @@ export default function Home() {
             </div>
           </div>
 
+          {/* chatbot section - between photo and text */}
+          <div className="order-2 xl:order-2 w-full xl:max-w-[500px]">
+            <EmbeddedChatBot />
+          </div>
+
           {/* photo section */}
-          <div className="order-1 xl:order-2 mb-8 xl:mb-0 xl:max-w-[45%]">
+          <div className="order-1 xl:order-3 mb-8 xl:mb-0 xl:max-w-[45%]">
             <Photo />
           </div>
         </div>
