@@ -103,18 +103,7 @@ const Projects = () => {
     );
   }
 
-  // No projects state
-  if (filteredProjects.length === 0 && !loading) {
-    return (
-      <motion.section
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        className="min-h-[80vh] flex items-center justify-center"
-      >
-        <div className="text-white text-xl">No {activeFilter.toLowerCase()} found.</div>
-      </motion.section>
-    );
-  }
+  // Remove the early return for no filtered projects - handle it in the main render
 
   // No projects at all state
   if (projects.length === 0) {
@@ -181,8 +170,13 @@ const Projects = () => {
 
         {/* Projects Grid with Scrollbar */}
         <ScrollArea className="h-[600px] w-full rounded-lg">
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 p-4">
-            {filteredProjects.map((project, index) => (
+          {filteredProjects.length === 0 ? (
+            <div className="flex items-center justify-center h-full">
+              <div className="text-white text-xl">No {activeFilter.toLowerCase()} found.</div>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 p-4">
+              {filteredProjects.map((project, index) => (
               <motion.div
                 key={project.id}
                 initial={{ opacity: 0, y: 20 }}
@@ -308,8 +302,9 @@ const Projects = () => {
                   </div>
                 </div>
               </motion.div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </ScrollArea>
       </div>
     </motion.section>
