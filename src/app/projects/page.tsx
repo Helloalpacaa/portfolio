@@ -29,8 +29,17 @@ interface Project {
 
 const Projects = () => {
   const [projects, setProjects] = useState<Project[]>([]);
+  const [filteredProjects, setFilteredProjects] = useState<Project[]>([]);
+  const [activeFilter, setActiveFilter] = useState("All Projects");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
+  // Filter categories - easy to edit/add more later
+  const filterCategories = [
+    "All Projects",
+    "Web Development", 
+    "Mobile Development"
+  ];
 
   // Fetch projects from your API
   useEffect(() => {
@@ -43,6 +52,7 @@ const Projects = () => {
         const data = await response.json();
         console.log("Frontend received projects:", data); // Debug line
         setProjects(data);
+        setFilteredProjects(data); // Initialize filtered projects
         setLoading(false);
       } catch (err) {
         setError(err instanceof Error ? err.message : "An error occurred");
@@ -52,6 +62,20 @@ const Projects = () => {
 
     fetchProjects();
   }, []);
+
+  // Filter projects based on selected category
+  const filterProjects = (category: string) => {
+    setActiveFilter(category);
+    
+    if (category === "All Projects") {
+      setFilteredProjects(projects);
+    } else {
+      const filtered = projects.filter(project => 
+        project.category === category
+      );
+      setFilteredProjects(filtered);
+    }
+  };
 
   // Loading state
   if (loading) {
@@ -80,6 +104,19 @@ const Projects = () => {
   }
 
   // No projects state
+  if (filteredProjects.length === 0 && !loading) {
+    return (
+      <motion.section
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className="min-h-[80vh] flex items-center justify-center"
+      >
+        <div className="text-white text-xl">No {activeFilter.toLowerCase()} found.</div>
+      </motion.section>
+    );
+  }
+
+  // No projects at all state
   if (projects.length === 0) {
     return (
       <motion.section
@@ -118,10 +155,34 @@ const Projects = () => {
           </p>
         </motion.div>
 
+        {/* Filter Buttons */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 2.8 }}
+          className="flex justify-center mb-12"
+        >
+          <div className="flex flex-wrap gap-4 bg-[#232329] p-2 rounded-xl">
+            {filterCategories.map((category) => (
+              <button
+                key={category}
+                onClick={() => filterProjects(category)}
+                className={`px-6 py-3 rounded-lg font-medium transition-all duration-300 ${
+                  activeFilter === category
+                    ? "bg-[#00ff99] text-[#1c1c22] shadow-lg"
+                    : "text-white/80 hover:text-white hover:bg-white/5"
+                }`}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
+        </motion.div>
+
         {/* Projects Grid with Scrollbar */}
         <ScrollArea className="h-[600px] w-full rounded-lg">
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 p-4">
-            {projects.map((project, index) => (
+            {filteredProjects.map((project, index) => (
               <motion.div
                 key={project.id}
                 initial={{ opacity: 0, y: 20 }}
