@@ -159,7 +159,7 @@ portfolio/
 
 The site is deployed on Vercel with automatic deployments from the main branch.
 
-**Live Site**: [Your Portfolio URL]
+**Live Site**: [https://portfolio-jjwlzetc1-heidis-projects-35836ea6.vercel.app](https://portfolio-jjwlzetc1-heidis-projects-35836ea6.vercel.app)
 
 ### **Deployment Steps**
 1. Push changes to main branch
@@ -191,7 +191,7 @@ This project is open source and available under the [MIT License](LICENSE).
 - Email: helloalpacaa@gmail.com
 - Phone: +1 346 442 5302
 - Location: Atlanta, Georgia
-- Portfolio: [Your Live Portfolio URL]
+- Portfolio: [https://portfolio-jjwlzetc1-heidis-projects-35836ea6.vercel.app](https://portfolio-jjwlzetc1-heidis-projects-35836ea6.vercel.app)
 - GitHub: [@Helloalpacaa](https://github.com/Helloalpacaa)
 
 ---
