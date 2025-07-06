@@ -16,7 +16,7 @@ const ChatBot = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: "1",
-      text: "Hi! I'm here to help you learn more about helloalpacaa. What would you like to know?",
+      text: "Hi! I'm here to help you learn more about Heidi. What would you like to know?",
       isUser: false,
       timestamp: new Date(),
     },
@@ -104,8 +104,12 @@ const ChatBot = () => {
           >
             {/* Header */}
             <div className="bg-accent text-primary p-4 rounded-t-lg">
-              <h3 className="font-semibold">Chat with helloalpacaa's Assistant</h3>
-              <p className="text-sm opacity-80">Ask me anything about helloalpacaa!</p>
+              <h3 className="font-semibold">
+                Chat with helloalpacaa's Assistant
+              </h3>
+              <p className="text-sm opacity-80">
+                Ask me anything about helloalpacaa!
+              </p>
             </div>
 
             {/* Messages */}
@@ -113,7 +117,9 @@ const ChatBot = () => {
               {messages.map((message) => (
                 <div
                   key={message.id}
-                  className={`flex ${message.isUser ? "justify-end" : "justify-start"}`}
+                  className={`flex ${
+                    message.isUser ? "justify-end" : "justify-start"
+                  }`}
                 >
                   <div
                     className={`max-w-[80%] p-3 rounded-lg ${
@@ -131,8 +137,14 @@ const ChatBot = () => {
                   <div className="bg-white/10 text-white p-3 rounded-lg">
                     <div className="flex space-x-1">
                       <div className="w-2 h-2 bg-white/60 rounded-full animate-bounce"></div>
-                      <div className="w-2 h-2 bg-white/60 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                      <div className="w-2 h-2 bg-white/60 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                      <div
+                        className="w-2 h-2 bg-white/60 rounded-full animate-bounce"
+                        style={{ animationDelay: "0.1s" }}
+                      ></div>
+                      <div
+                        className="w-2 h-2 bg-white/60 rounded-full animate-bounce"
+                        style={{ animationDelay: "0.2s" }}
+                      ></div>
                     </div>
                   </div>
                 </div>

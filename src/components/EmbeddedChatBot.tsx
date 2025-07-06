@@ -15,7 +15,7 @@ const EmbeddedChatBot = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: "1",
-      text: "Hi! I&apos;m Heidi. Ask me anything about my background, skills, projects, or experience!",
+      text: "Hi! I'm Heidi. Ask me anything about my background, skills, projects, or experience!",
       isUser: false,
       timestamp: new Date(),
     },
@@ -91,7 +91,6 @@ const EmbeddedChatBot = () => {
     }
   };
 
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
@@ -119,7 +118,11 @@ const EmbeddedChatBot = () => {
             type="text"
             value={inputMessage}
             onChange={(e) => setInputMessage(e.target.value)}
-            onKeyDown={(e) => e.key === 'Enter' && !e.shiftKey && (e.preventDefault(), sendMessage())}
+            onKeyDown={(e) =>
+              e.key === "Enter" &&
+              !e.shiftKey &&
+              (e.preventDefault(), sendMessage())
+            }
             placeholder="Ask me anything about Heidi..."
             className="flex-1 bg-gradient-to-r from-[#2a2a2a] to-[#333333] text-white placeholder:text-white/60 px-4 py-3 rounded-xl border border-accent/40 focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent focus:shadow-lg focus:shadow-accent/10 transition-all duration-300"
             disabled={isLoading}
@@ -130,7 +133,7 @@ const EmbeddedChatBot = () => {
             className="bg-gradient-to-r from-accent to-green-400 text-primary px-6 py-3 rounded-xl hover:from-accent/90 hover:to-green-400/90 hover:shadow-lg hover:shadow-accent/30 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 transition-all duration-300 flex items-center gap-2 font-medium"
           >
             <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+              <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
             </svg>
           </button>
         </div>
@@ -172,7 +175,9 @@ const EmbeddedChatBot = () => {
                   }`}
                 >
                   {!message.isUser && (
-                    <p className="text-xs text-blue-400 mb-2 font-medium">🐱 HEIDI (BOT):</p>
+                    <p className="text-xs text-blue-400 mb-2 font-medium">
+                      🐱 HEIDI (BOT):
+                    </p>
                   )}
                   <p className="text-sm leading-relaxed">{message.text}</p>
                 </div>
@@ -183,7 +188,9 @@ const EmbeddedChatBot = () => {
             <div className="flex justify-start">
               <div className="flex items-start gap-3">
                 <div className="bg-gradient-to-r from-[#2a2a2a] to-[#333333] text-white p-4 rounded-xl shadow-lg shadow-black/30 border border-white/10">
-                  <p className="text-xs text-blue-400 mb-2 font-medium">🐱 HEIDI (BOT):</p>
+                  <p className="text-xs text-blue-400 mb-2 font-medium">
+                    🐱 HEIDI (BOT):
+                  </p>
                   <div className="flex space-x-2">
                     <div className="w-2 h-2 bg-white/60 rounded-full animate-bounce"></div>
                     <div

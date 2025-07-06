@@ -95,6 +95,8 @@ A modern, responsive portfolio website built with Next.js showcasing my software
    NEXT_PUBLIC_EMAILJS_TEMPLATE_ID="your_template_id"
    NEXT_PUBLIC_EMAILJS_PUBLIC_KEY="your_public_key"
    ```
+   
+   > **Security Note**: Never commit your `.env.local` file to version control. The `.gitignore` file already excludes environment files.
 
 4. **Set up the database**
    ```bash
