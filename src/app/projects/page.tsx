@@ -37,8 +37,8 @@ const Projects = () => {
   // Filter categories - easy to edit/add more later
   const filterCategories = [
     "All Projects",
-    "Web Development", 
-    "Mobile Development"
+    "Web Development",
+    "Mobile Development",
   ];
 
   // Fetch projects from your API
@@ -66,12 +66,12 @@ const Projects = () => {
   // Filter projects based on selected category
   const filterProjects = (category: string) => {
     setActiveFilter(category);
-    
+
     if (category === "All Projects") {
       setFilteredProjects(projects);
     } else {
-      const filtered = projects.filter(project => 
-        project.category === category
+      const filtered = projects.filter(
+        (project) => project.category === category
       );
       setFilteredProjects(filtered);
     }
@@ -139,8 +139,8 @@ const Projects = () => {
             My Projects<span className="text-[#00ff99]">.</span>
           </h1>
           <p className="max-w-[600px] text-white/80 mx-auto text-lg">
-            A collection of projects that showcase my skills in web development,
-            from frontend designs to full-stack applications.
+            A collection of projects that showcase my skills in mobile
+            development, web development, and full-stack applications.
           </p>
         </motion.div>
 
@@ -172,136 +172,140 @@ const Projects = () => {
         <ScrollArea className="h-[600px] w-full rounded-lg">
           {filteredProjects.length === 0 ? (
             <div className="flex items-center justify-center h-full">
-              <div className="text-white text-xl">No {activeFilter.toLowerCase()} found.</div>
+              <div className="text-white text-xl">
+                No {activeFilter.toLowerCase()} found.
+              </div>
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 p-4">
               {filteredProjects.map((project, index) => (
-              <motion.div
-                key={project.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 2.8 + index * 0.1 }}
-                className="group"
-              >
-                {/* Project Card */}
-                <div className="bg-[#232329] rounded-xl overflow-hidden hover:bg-[#2a2a32] transition-all duration-300">
-                  {/* Project Image */}
-                  <div className="relative h-[250px] overflow-hidden">
-                    {project.image ? (
-                      <Image
-                        src={project.image}
-                        fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-300"
-                        alt={project.title}
-                      />
-                    ) : (
-                      <div className="w-full h-full bg-[#1a1a1f] flex items-center justify-center">
-                        <span className="text-white/60">No image</span>
-                      </div>
-                    )}
-                    {/* Project Number Overlay */}
-                    <div className="absolute top-4 left-4 w-12 h-12 bg-[#00ff99] rounded-full flex items-center justify-center">
-                      <span className="text-[#1c1c22] font-bold text-lg">
-                        {project.num}
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Project Content */}
-                  <div className="p-6">
-                    {/* Category */}
-                    <div className="mb-3">
-                      <span className="text-[#00ff99] text-sm font-medium uppercase tracking-wider">
-                        {project.category} project
-                      </span>
-                    </div>
-
-                    {/* Title */}
-                    <h3 className="text-white text-xl font-semibold mb-3 group-hover:text-[#00ff99] transition-colors">
-                      {project.title}
-                    </h3>
-
-                    {/* Description */}
-                    <p className="text-white/70 text-sm mb-6 line-clamp-3">
-                      {project.description}
-                    </p>
-
-                    {/* Technologies */}
-                    {(() => {
-                      console.log(
-                        "Project:",
-                        project.title,
-                        "Stack:",
-                        project.stack
-                      );
-                      return null; // Return null so it doesn't render anything
-                    })()}
-                    {project.stack && project.stack.length > 0 ? (
-                      <div className="mb-4">
-                        <p className="text-white text-xs mb-2">Technologies:</p>
-                        <div className="flex flex-wrap gap-2">
-                          {project.stack.map((tech, techIndex) => (
-                            <span
-                              key={techIndex}
-                              className="px-3 py-1 bg-[#00ff99]/10 text-[#00ff99] text-xs rounded-full border border-[#00ff99]/20"
-                            >
-                              {tech}
-                            </span>
-                          ))}
+                <motion.div
+                  key={project.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 2.8 + index * 0.1 }}
+                  className="group"
+                >
+                  {/* Project Card */}
+                  <div className="bg-[#232329] rounded-xl overflow-hidden hover:bg-[#2a2a32] transition-all duration-300">
+                    {/* Project Image */}
+                    <div className="relative h-[250px] overflow-hidden">
+                      {project.image ? (
+                        <Image
+                          src={project.image}
+                          fill
+                          className="object-cover group-hover:scale-105 transition-transform duration-300"
+                          alt={project.title}
+                        />
+                      ) : (
+                        <div className="w-full h-full bg-[#1a1a1f] flex items-center justify-center">
+                          <span className="text-white/60">No image</span>
                         </div>
+                      )}
+                      {/* Project Number Overlay */}
+                      <div className="absolute top-4 left-4 w-12 h-12 bg-[#00ff99] rounded-full flex items-center justify-center">
+                        <span className="text-[#1c1c22] font-bold text-lg">
+                          {project.num}
+                        </span>
                       </div>
-                    ) : (
-                      <div className="mb-4 text-white/50 text-xs">
-                        No technologies
-                      </div>
-                    )}
+                    </div>
 
-                    {/* Action Buttons */}
-                    <div className="flex items-center gap-4">
-                      {/* Live Project Button */}
-                      {project.liveUrl && (
-                        <Link
-                          href={project.liveUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <TooltipProvider delayDuration={100}>
-                            <Tooltip>
-                              <TooltipTrigger className="w-12 h-12 rounded-full bg-white/5 flex justify-center items-center group/btn hover:bg-[#00ff99] transition-all">
-                                <BsArrowUpRight className="text-white text-lg group-hover/btn:text-[#1c1c22]" />
-                              </TooltipTrigger>
-                              <TooltipContent>
-                                <p>Live Demo</p>
-                              </TooltipContent>
-                            </Tooltip>
-                          </TooltipProvider>
-                        </Link>
+                    {/* Project Content */}
+                    <div className="p-6">
+                      {/* Category */}
+                      <div className="mb-3">
+                        <span className="text-[#00ff99] text-sm font-medium uppercase tracking-wider">
+                          {project.category} project
+                        </span>
+                      </div>
+
+                      {/* Title */}
+                      <h3 className="text-white text-xl font-semibold mb-3 group-hover:text-[#00ff99] transition-colors">
+                        {project.title}
+                      </h3>
+
+                      {/* Description */}
+                      <p className="text-white/70 text-sm mb-6 line-clamp-3">
+                        {project.description}
+                      </p>
+
+                      {/* Technologies */}
+                      {(() => {
+                        console.log(
+                          "Project:",
+                          project.title,
+                          "Stack:",
+                          project.stack
+                        );
+                        return null; // Return null so it doesn't render anything
+                      })()}
+                      {project.stack && project.stack.length > 0 ? (
+                        <div className="mb-4">
+                          <p className="text-white text-xs mb-2">
+                            Technologies:
+                          </p>
+                          <div className="flex flex-wrap gap-2">
+                            {project.stack.map((tech, techIndex) => (
+                              <span
+                                key={techIndex}
+                                className="px-3 py-1 bg-[#00ff99]/10 text-[#00ff99] text-xs rounded-full border border-[#00ff99]/20"
+                              >
+                                {tech}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="mb-4 text-white/50 text-xs">
+                          No technologies
+                        </div>
                       )}
 
-                      {/* GitHub Button */}
-                      {project.githubUrl && (
-                        <Link
-                          href={project.githubUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <TooltipProvider delayDuration={100}>
-                            <Tooltip>
-                              <TooltipTrigger className="w-12 h-12 rounded-full bg-white/5 flex justify-center items-center group/btn hover:bg-[#00ff99] transition-all">
-                                <BsGithub className="text-white text-lg group-hover/btn:text-[#1c1c22]" />
-                              </TooltipTrigger>
-                              <TooltipContent>
-                                <p>GitHub repository</p>
-                              </TooltipContent>
-                            </Tooltip>
-                          </TooltipProvider>
-                        </Link>
-                      )}
+                      {/* Action Buttons */}
+                      <div className="flex items-center gap-4">
+                        {/* Live Project Button */}
+                        {project.liveUrl && (
+                          <Link
+                            href={project.liveUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <TooltipProvider delayDuration={100}>
+                              <Tooltip>
+                                <TooltipTrigger className="w-12 h-12 rounded-full bg-white/5 flex justify-center items-center group/btn hover:bg-[#00ff99] transition-all">
+                                  <BsArrowUpRight className="text-white text-lg group-hover/btn:text-[#1c1c22]" />
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                  <p>Live Demo</p>
+                                </TooltipContent>
+                              </Tooltip>
+                            </TooltipProvider>
+                          </Link>
+                        )}
+
+                        {/* GitHub Button */}
+                        {project.githubUrl && (
+                          <Link
+                            href={project.githubUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <TooltipProvider delayDuration={100}>
+                              <Tooltip>
+                                <TooltipTrigger className="w-12 h-12 rounded-full bg-white/5 flex justify-center items-center group/btn hover:bg-[#00ff99] transition-all">
+                                  <BsGithub className="text-white text-lg group-hover/btn:text-[#1c1c22]" />
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                  <p>GitHub repository</p>
+                                </TooltipContent>
+                              </Tooltip>
+                            </TooltipProvider>
+                          </Link>
+                        )}
+                      </div>
                     </div>
                   </div>
-                </div>
-              </motion.div>
+                </motion.div>
               ))}
             </div>
           )}
