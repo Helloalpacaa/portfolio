@@ -39,6 +39,7 @@ const Projects = () => {
     "All Projects",
     "Web Development",
     "Mobile Development",
+    "AI/ML",
   ];
 
   // Fetch projects from your API
@@ -194,8 +195,9 @@ const Projects = () => {
                         <Image
                           src={project.image}
                           fill
-                          className="object-cover group-hover:scale-105 transition-transform duration-300"
+                          className="object-cover object-center group-hover:scale-105 transition-transform duration-300"
                           alt={project.title}
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         />
                       ) : (
                         <div className="w-full h-full bg-[#1a1a1f] flex items-center justify-center">

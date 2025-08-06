@@ -11,7 +11,7 @@
 - Projects are stored in a PostgreSQL database using Prisma ORM
 - Project data includes: title, description, category, githubUrl, liveUrl, image, stack, etc.
 - Projects are fetched via API endpoint: `/api/projects`
-- Frontend displays projects with filtering by category (Web Development, Mobile Development)
+- Frontend displays projects with filtering by category (Web Development, Mobile Development, AI/ML)
 
 ## Common Commands
 - `npx prisma studio` - Open database management interface
@@ -43,7 +43,7 @@ INSERT INTO "Project" (
   ) VALUES (
     gen_random_uuid()::text,
     'Project Title',
-    'Web Development', -- or 'Mobile Development'
+    'Web Development', -- or 'Mobile Development' or 'AI/ML'
     'Project description here',
     '0X', -- Project number as string
     ARRAY['Tech1', 'Tech2', 'Tech3'], -- Technologies used
