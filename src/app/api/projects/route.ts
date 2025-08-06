@@ -7,9 +7,10 @@ export async function GET() {
   try {
     console.log("API route called - fetching latest projects");
     console.log("Prisma client created");
-    const projects = await prisma.project.findMany({
-      orderBy: { num: "asc" },
-    });
+    const projects = await prisma.project.findMany();
+    
+    // Sort projects numerically by num field (since it's stored as string)
+    projects.sort((a, b) => parseInt(a.num) - parseInt(b.num));
     console.log("Raw projects from DB:", JSON.stringify(projects, null, 2));
 
     return NextResponse.json(projects);
